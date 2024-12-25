@@ -12,6 +12,13 @@ class DigitalNetGeneralBase:
             assert M.shape == (self.m, self.n)
         self.base = base
         self.coeff = np.power(1/self.base, np.arange(1,self.m+1))
+    
+    def __repr__(self):
+        s = f"DigitalNetGeneralBase(dim={len(self.matrices)}, base={self.base})\n"
+        s += "Matrices:\n"
+        for M in self.matrices:
+            s += str(M) + "\n"
+        return s
 
     def generate_all_points(self):
         """
@@ -86,7 +93,22 @@ class DigitalNetGeneralBase:
             matrices.append(matrix)
 
         return DigitalNetGeneralBase(matrices,base)
-
+    
+    @staticmethod
+    def Faure_sequence(n: int, base: int):
+        """
+        construct base-dimensional Faure digital net of n*n matrices
+        Args:
+          n: log_b(number of points)
+          base: base of the lattice
+        Returns:
+          DigitalNetGeneralBase object
+        """
+        P = DigitalNetGeneralBase.Pascal_upper_matrix(n,base)
+        matrices = [np.eye(n, dtype='int'), P]
+        for i in range(base-2):
+            matrices.append(matrices[-1]@P%base)
+        return DigitalNetGeneralBase(matrices,base)
     @staticmethod
     def _int_to_vec(N: int, m: int, b: int) -> np.ndarray:
         """
@@ -96,3 +118,43 @@ class DigitalNetGeneralBase:
         for i in range(m):
             N,res[i] = divmod(N,b)
         return np.array(res).reshape(-1, 1)
+    
+    @staticmethod
+    def Pascal_lower_matrix(n: int, base=None):
+        P = np.zeros((n,n), dtype='int')
+        P[:,0] = 1
+        for i in range(1,n):
+            for j in range(1,i+1):
+                P[i][j] = P[i-1][j-1] + P[i-1][j]
+        if base is not None:
+            P %= base
+        return P
+
+    @staticmethod
+    def Pascal_upper_matrix(n: int, base=None):
+        return DigitalNetGeneralBase.Pascal_lower_matrix(n,base).T
+
+    @staticmethod
+    def identity_matrix(n: int):
+        return np.eye(n, dtype='int')
+    
+    @staticmethod
+    def anti_diagonal_identity_matrix(n: int):
+        return np.zeros((n,n), dtype='int')[::-1]
+
+    @staticmethod
+    def LP_matrix(n: int):
+        """generate Larcher Pillichshammer matrix"""
+        return np.tril(np.ones((n,n), dtype=int))[::-1]
+
+    @staticmethod
+    def LOne_matrix(n: int):
+        return np.tril(np.ones((n,n), dtype=int))
+
+    @staticmethod
+    def random_lower_matrix(n: int, base: int):
+        M = np.random.randint(0, base, (n, n))
+        for i in range(m):
+            M[i,i] = 1
+        return np.tril(M)
+
