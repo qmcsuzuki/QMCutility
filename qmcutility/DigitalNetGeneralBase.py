@@ -109,6 +109,7 @@ class DigitalNetGeneralBase:
         for i in range(base-2):
             matrices.append(matrices[-1]@P%base)
         return DigitalNetGeneralBase(matrices,base)
+    
     @staticmethod
     def _int_to_vec(N: int, m: int, b: int) -> np.ndarray:
         """
@@ -144,11 +145,19 @@ class DigitalNetGeneralBase:
 
     @staticmethod
     def LP_matrix(n: int):
-        """generate Larcher Pillichshammer matrix"""
+        """
+        This function creates an n x n lower triangular matrix where all elements
+        above the anti-diagonal, including the diagonal, are set to 1.
+        This matrix is used for Larcher-Pillichshammer (0,m,2)-net.
+        """
         return np.tril(np.ones((n,n), dtype=int))[::-1]
 
     @staticmethod
     def LOne_matrix(n: int):
+        """
+        This function creates an n x n lower triangular matrix where all elements
+        in the lower triangle, including the diagonal, are set to 1
+        """
         return np.tril(np.ones((n,n), dtype=int))
 
     @staticmethod
