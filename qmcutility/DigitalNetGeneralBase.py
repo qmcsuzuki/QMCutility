@@ -2,10 +2,11 @@ import numpy as np
 class DigitalNetGeneralBase:
     def __init__(self, matrices, base):
         """
-        self.matrices: list of matrices
-        self.base: base of the lattice
-        self.m: precision
+        self.matrices: list of generating matrices
+        self.base: base of the digital net
+        self.m: precision of the net
         self.n: log_b(number_of_points)
+        self.coeff: coefficient to convert vectors to floats
         """
         self.matrices = matrices[::]
         self.m, self.n = matrices[0].shape
