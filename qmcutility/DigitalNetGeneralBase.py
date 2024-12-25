@@ -1,3 +1,4 @@
+import numpy as np
 class DigitalNetGeneralBase:
     def __init__(self, matrices, base):
         """
