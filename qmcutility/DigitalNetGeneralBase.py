@@ -151,15 +151,15 @@ class DigitalNetGeneralBase:
         above the anti-diagonal, including the diagonal, are set to 1.
         This matrix is used for Larcher-Pillichshammer (0,m,2)-net.
         """
-        return np.tril(np.ones((n,n), dtype=int))[::-1]
+        return (np.tri(n, dtype=int).T)[::-1]
 
     @staticmethod
-    def LOne_matrix(n: int):
+    def lower_ones_matrix(n: int):
         """
         This function creates an n x n lower triangular matrix where all elements
         in the lower triangle, including the diagonal, are set to 1
         """
-        return np.tril(np.ones((n,n), dtype=int))
+        return np.tri(n, dtype=int)
 
     @staticmethod
     def random_lower_matrix(n: int, base: int):
