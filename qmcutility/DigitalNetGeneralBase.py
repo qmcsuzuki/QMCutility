@@ -86,7 +86,7 @@ class DigitalNetGeneralBase:
         L = n + precision - 1
         matrices = []
         for numer in numers:
-            matrix = np.zeros((precision,n))
+            matrix = np.zeros((precision,n), dtype='int')
             # to avoid padding, concatinate denom
             quotient = (np.polynomial.Polynomial([0]*L + numer)//denom).coef
             result = np.round((np.pad(quotient,(0,L)))[:L][::-1]).astype(np.int64)%base
