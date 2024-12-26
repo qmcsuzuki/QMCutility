@@ -50,7 +50,7 @@ class DigitalNetGeneralBase:
         return [(Mj@vec%self.base) for j,Mj in enumerate(self.matrices)]
 
     def kth_vectors_transposed(self, k: int): # transposed for visibility
-        return [M.T for M in self.kth_vectors(k)]
+        return [M.T for M in self.kth_vectors(k)].astype(int)
 
     def kth_points(self, k: int):
         return np.array([self.coeff@vec for vec in self.kth_vectors(k)])
