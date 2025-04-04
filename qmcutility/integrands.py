@@ -3,7 +3,7 @@ every function returns the pair (integrand, true_value)
 - integrand: function from points (n*d ndarray) to values (n*1 vector)
 - true_value: integration value
 """
-
+import numpy as np
 """
 f(x) = exp(sum(w1*x1+...+ws*xs))/C where C is normalizing constant
 true_value = 1
