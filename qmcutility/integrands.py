@@ -17,7 +17,11 @@ def generate_normalized_expsum(weights):
     f = lambda points: np.exp(np.sum(points*weights, axis=1))/C
     return (f, 1)
 
-def generate_sinsum(weights):
+"""
+f(x) = sin(sum(x1+...+xs))
+true_value = 0
+"""
+def generate_sinsum():
     f = lambda points: np.sin(np.sum(2*np.pi*points, axis=1))
     return (f, 0)
 
