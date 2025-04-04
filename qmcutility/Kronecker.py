@@ -1,3 +1,5 @@
+import numpy as np
+
 """
 make Kronecker points as n*d ndarray
 n: number of points
