@@ -2,7 +2,7 @@ from setuptools import setup, find_packages
 
 setup(
     name="QMCutility",  # Name of the package
-    version="0.1",  # Version number
+    version="0.101",  # Version number
     packages=find_packages(),  # Automatically find packages in the repository
     install_requires=[  # List any dependencies here, if applicable
         "numpy",  # Example dependency
