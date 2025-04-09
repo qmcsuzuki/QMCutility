@@ -2,13 +2,13 @@ from setuptools import setup, find_packages
 
 setup(
     name="QMCutility",  # Name of the package
-    version="0.1.03",  # Version number
+    version="0.1.04",  # Version number
     packages=find_packages(),  # Automatically find packages in the repository
     install_requires=[  # List any dependencies here, if applicable
         "numpy",  # Example dependency
     ],
     # Optional metadata
-    author="Your Name",
+    author="Kosuke Suzuki",
     author_email="your.email@example.com",
     description="A utility for Quasi Monte Carlo simulations",
     long_description=open('README.md').read(),
