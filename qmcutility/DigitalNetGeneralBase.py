@@ -38,7 +38,7 @@ class DigitalNetGeneralBase:
         Generate all digitally shifted points in the unit cube
         """
         points = np.zeros((self.base**self.n,len(self.matrices)))
-        if shifts=None:
+        if shifts == None:
             shifts = [np.random.randint((self.m,1)) for _ in range(len(self.matrices))]
         else:
             raise NotImplementedError("not implemented")
