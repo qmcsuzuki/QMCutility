@@ -33,11 +33,15 @@ class DigitalNetGeneralBase:
                 points[i,j] = (self.coeff@(Mj@vec%self.base)).item()
         return points
 
-    def generate_all_digitally_shifted_points(self,shifts):
+    def generate_all_digitally_shifted_points(self,shifts=None):
         """
         Generate all digitally shifted points in the unit cube
         """
         points = np.zeros((self.base**self.n,len(self.matrices)))
+        if shifts=None:
+            shifts = [np.random.randint((self.m,1)) for _ in range(len(self.matrices))]
+        else:
+            raise NotImplementedError("not implemented")
 
         for i in range(self.base ** self.n):
             vec = self._int_to_vec(i, self.n, self.base)
