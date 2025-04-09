@@ -39,7 +39,7 @@ class DigitalNetGeneralBase:
         """
         points = np.zeros((self.base**self.n,len(self.matrices)))
         if shifts == None:
-            shifts = [np.random.randint((self.m,1)) for _ in range(len(self.matrices))]
+            shifts = [np.random.randint(0, self.base, size=self.m).reshape(-1, 1) for _ in range(len(self.matrices))]
         else:
             raise NotImplementedError("not implemented")
 
